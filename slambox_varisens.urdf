@@ -1,0 +1,67 @@
+<robot name="slambox_new">
+	<material name="orange">
+    <color rgba="1.0 0.5 0.2 1" />
+  </material>
+  <material name="gray">
+    <color rgba="0.2 0.2 0.3 1" />
+  </material>
+
+  <link name="base_link" />
+  <link name="total_rotation_link"/>
+
+  <joint name="total_rotation_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="total_rotation_link" />
+    <origin xyz="0 0 0" rpy="-0.04 0.17 0.1" />
+  </joint>
+
+  <link name="imu_link">
+    <visual>
+        <!-- <origin xyz="0 0 0.005"/> -->
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.008" radius="0.0155"/>
+        </geometry>
+    </visual>
+  </link>
+    <link name="velodyne_1">
+    <visual>
+      <origin xyz="0 0 0.0021" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0717" radius="0.05165" />
+      </geometry>
+      <material name="orange" />
+    </visual>
+  </link>
+  <link name="velodyne_2">
+    <visual>
+      <origin xyz="0 0 0.0021" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0717" radius="0.05165" />
+      </geometry>
+      <material name="orange" />
+    </visual>
+  </link>
+
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="total_rotation_link" />
+    <child link="imu_link" />
+    <origin xyz="0 0 0" rpy="0 -1.5707 3.14159" />
+  </joint>
+
+   <joint name="velodyne_joint_1" type="fixed">
+    <parent link="base_link" />
+    <child link="velodyne_1" />
+    <origin xyz="-0.2148 -0.0765 -0.049" rpy="1.5707 0 -1.5707" />
+  </joint>
+
+
+   <joint name="velodyne_joint_2" type="fixed">
+    <parent link="base_link" />
+    <child link="velodyne_2" />
+    <!-- <origin xyz="0.09971 0.07103 0.06185" rpy="0 0 -1.5707" /> -->
+    <origin xyz="-0.099 -0.0765 0.0768" rpy="0 0 -1.5707" />
+  </joint>
+
+</robot>
